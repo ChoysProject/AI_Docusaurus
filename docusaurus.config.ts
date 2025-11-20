@@ -5,34 +5,27 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  // 1. 사이트 기본 정보 수정
+  title: 'AI 인프라 구축 위키', // [수정] 사이트 제목
+  tagline: '백엔드 개발자의 AI 상식사전 학습 & 인프라 구축 로그', // [수정] 한 줄 소개
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
+  // 2. 배포 URL 설정 (GitHub Pages 필수 설정!)
+  url: 'https://ChoysProject.github.io', // [수정] 예: https://choys.github.io
+  baseUrl: '/AI_Docusaurus/', // [수정] 리포지토리 이름 (앞뒤로 / 필수)
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // 3. GitHub 배포 설정
+  organizationName: 'ChoysProject', // [수정] GitHub User ID
+  projectName: 'AI_Docusaurus', // [수정] GitHub Repository Name
+  deploymentBranch: 'gh-pages', // 배포 브랜치 명시
+  trailingSlash: false, // 경로 에러 방지용
 
   onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'ko', // [수정] 한국어로 변경
+    locales: ['ko'],
   },
 
   presets: [
@@ -41,25 +34,12 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // "이 페이지 수정하기" 링크 제거 (개인 블로그라 불필요)
+          // editUrl: 'https://github.com/...', 
         },
         blog: {
           showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          // 블로그 기능은 일단 둡니다
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -69,13 +49,9 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
-    colorMode: {
-      respectPrefersColorScheme: true,
-    },
     navbar: {
-      title: 'My Site',
+      title: 'AI Infra Wiki', // [수정] 왼쪽 상단 로고 옆 텍스트
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -85,11 +61,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'AI 학습노트', // [수정] 메뉴 이름 변경
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/blog', label: '개발일기', position: 'left'}, // [수정] Blog -> 개발일기
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/ChoysProject/AI_Docusaurus', // [수정] 내 리포지토리로 링크 변경
           label: 'GitHub',
           position: 'right',
         },
@@ -102,25 +78,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'AI 학습노트',
               to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
             },
           ],
         },
@@ -128,17 +87,13 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/ChoysProject/AI_Docusaurus',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} ChoYoungSang. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
