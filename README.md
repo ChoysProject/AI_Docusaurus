@@ -1,3 +1,5 @@
+AI Study - AI 인프라, 개발, AI 기본상식 블로그
+
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
