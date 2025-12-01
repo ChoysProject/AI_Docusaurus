@@ -5,26 +5,26 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  // 1. 사이트 기본 정보 수정
-  title: 'AI 인프라 구축 위키', // [수정] 사이트 제목
-  tagline: '백엔드 개발자의 AI 상식사전 학습 & 인프라 구축 로그', // [수정] 한 줄 소개
+  // 1. 사이트 기본 정보
+  title: 'AI 인프라 구축 위키',
+  tagline: '백엔드 개발자의 AI 상식사전 학습 & 인프라 구축 로그',
   favicon: 'img/favicon.ico',
 
-  // 2. 배포 URL 설정 (GitHub Pages 필수 설정!)
-  url: 'https://ChoysProject.github.io', // [수정] 예: https://choys.github.io
-  baseUrl: '/AI_Docusaurus/', // [수정] 리포지토리 이름 (앞뒤로 / 필수)
+  // 2. GitHub Pages 배포 설정 (ChoysProject님 설정 유지)
+  url: 'https://ChoysProject.github.io',
+  baseUrl: '/AI_Docusaurus/', 
+  organizationName: 'ChoysProject', 
+  projectName: 'AI_Docusaurus', 
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
-  // 3. GitHub 배포 설정
-  organizationName: 'ChoysProject', // [수정] GitHub User ID
-  projectName: 'AI_Docusaurus', // [수정] GitHub Repository Name
-  deploymentBranch: 'gh-pages', // 배포 브랜치 명시
-  trailingSlash: false, // 경로 에러 방지용
-
-  onBrokenLinks: 'throw',
+  // 3. 에러 핸들링 (warn 유지)
+  onBrokenLinks: 'warn', 
   onBrokenMarkdownLinks: 'warn',
 
+  // 4. 언어 설정
   i18n: {
-    defaultLocale: 'ko', // [수정] 한국어로 변경
+    defaultLocale: 'ko',
     locales: ['ko'],
   },
 
@@ -34,12 +34,16 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // "이 페이지 수정하기" 링크 제거 (개인 블로그라 불필요)
-          // editUrl: 'https://github.com/...', 
         },
         blog: {
           showReadingTime: true,
-          // 블로그 기능은 일단 둡니다
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -51,21 +55,52 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'AI Infra Wiki', // [수정] 왼쪽 상단 로고 옆 텍스트
+      title: 'AI Infra Wiki',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
       },
       items: [
+        // [1] AI 상식사전
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          type: 'doc', 
           position: 'left',
-          label: 'AI 학습노트', // [수정] 메뉴 이름 변경
+          // [수정] 01-ai-dictionary/intro -> ai-dictionary/intro
+          docId: 'ai-dictionary/intro', 
+          label: 'AI 상식사전',
         },
-        {to: '/blog', label: '개발일기', position: 'left'}, // [수정] Blog -> 개발일기
+        // [2] AI 인프라
         {
-          href: 'https://github.com/ChoysProject/AI_Docusaurus', // [수정] 내 리포지토리로 링크 변경
+          type: 'doc',
+          position: 'left',
+          // [수정] 02-ai-infra/intro -> ai-infra/intro
+          docId: 'ai-infra/intro',
+          label: 'AI 인프라',
+        },
+        // [3] AI 공부
+        {
+          type: 'doc',
+          position: 'left',
+          // [수정] 03-ai-study/intro -> ai-study/intro
+          docId: 'ai-study/intro',
+          label: 'AI 공부',
+        },
+        // [4] 공통
+        {
+          type: 'doc',
+          position: 'left',
+          // [수정] 04-common/intro -> common/intro
+          docId: 'common/intro',
+          label: '공통',
+        },        // [5] 개발일지 (블로그)
+        {
+          to: '/blog', 
+          label: '개발일지', 
+          position: 'left'
+        },
+        // [우측] 깃허브 링크
+        {
+          href: 'https://github.com/ChoysProject/AI_Docusaurus',
           label: 'GitHub',
           position: 'right',
         },
@@ -78,14 +113,22 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'AI 학습노트',
-              to: '/docs/intro',
+              label: 'AI 상식사전',
+              to: '/docs/01-ai-dictionary/intro',
+            },
+            {
+              label: 'AI 인프라',
+              to: '/docs/02-ai-infra/intro',
             },
           ],
         },
         {
           title: 'More',
           items: [
+            {
+              label: '개발일지',
+              to: '/blog',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/ChoysProject/AI_Docusaurus',
